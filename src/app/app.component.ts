@@ -19,7 +19,12 @@ export class AppComponent {
 
         apiBase: constants.DREAMFACTORY_INSTANCE_URL + '/api/v2',
         signInPath: 'user/session',
-        signInRedirect: '/session/sign-in',
+        signInRedirect: 'session/sign-in',
+        registerAccountPath: 'user/register',
+        deleteAccountPath: '',
+        updatePasswordPath: 'user/password',
+        resetPasswordPath: 'user/password?reset=true',
+
         validateTokenPath: '',
 
 

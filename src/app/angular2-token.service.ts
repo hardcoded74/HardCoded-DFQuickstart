@@ -51,11 +51,11 @@ export class Angular2TokenService implements CanActivate {
     get currentAuthHeaders(): Headers {
         if (this.atCurrentAuthData != null) {
             return new Headers({
-                'access-token': this.atCurrentAuthData.accessToken,
-                'client':       this.atCurrentAuthData.client,
-                'expiry':       this.atCurrentAuthData.expiry,
-                'token-type':   this.atCurrentAuthData.tokenType,
-                'uid':          this.atCurrentAuthData.uid
+                'access-token':     this.atCurrentAuthData.accessToken,
+                'expiry':           this.atCurrentAuthData.expiry,
+                'token-type':       this.atCurrentAuthData.tokenType,
+                'uid':              this.atCurrentAuthData.uid,
+                'session_token':    this.atCurrentAuthData.session_token
             });
         }
 
@@ -232,10 +232,10 @@ export class Angular2TokenService implements CanActivate {
         let observ = this.delete(this.getUserPath() + this.atOptions.signOutPath);
 
         localStorage.removeItem('accessToken');
-        localStorage.removeItem('client');
         localStorage.removeItem('expiry');
         localStorage.removeItem('tokenType');
         localStorage.removeItem('uid');
+        localStorage.removeItem('session_token');
 
         this.atCurrentAuthData = null;
         this.atCurrentUserType = null;
@@ -298,7 +298,7 @@ export class Angular2TokenService implements CanActivate {
 
         let body = JSON.stringify({
             email:          resetPasswordData.email,
-            redirect_url:   this.atOptions.resetPasswordCallback
+            /* DF doesn't support this -> redirect_url:   this.atOptions.resetPasswordCallback */
         });
 
         return this.post(this.getUserPath() + this.atOptions.resetPasswordPath, body);
@@ -371,11 +371,11 @@ export class Angular2TokenService implements CanActivate {
         // Merge auth headers to request if set
         if (this.atCurrentAuthData != null) {
             (<any>Object).assign(baseHeaders, {
-                'access-token': this.atCurrentAuthData.accessToken,
-                'client':       this.atCurrentAuthData.client,
-                'expiry':       this.atCurrentAuthData.expiry,
-                'token-type':   this.atCurrentAuthData.tokenType,
-                'uid':          this.atCurrentAuthData.uid
+                'access-token':     this.atCurrentAuthData.accessToken,
+                'expiry':           this.atCurrentAuthData.expiry,
+                'token-type':       this.atCurrentAuthData.tokenType,
+                'uid':              this.atCurrentAuthData.uid,
+                'session_token':    this.atCurrentAuthData.session_token
             });
         }
 
@@ -439,24 +439,26 @@ export class Angular2TokenService implements CanActivate {
         let headers = data.headers;
 
         let authData: AuthData = {
-            accessToken:    headers.get('access-token'),
-            client:         headers.get('client'),
+            accessToken:    headers.get('session_token'),
             expiry:         headers.get('expiry'),
             tokenType:      headers.get('token-type'),
-            uid:            headers.get('uid')
+            uid:            headers.get('uid'),
+            session_token:  headers.get('session_token')
         };
 
         this.setAuthData(authData);
     }
 
+
     // Parse Auth data from post message
     private getAuthDataFromPostMessage(data: any): void {
+        let pdata = JSON.parse(data._body);
         let authData: AuthData = {
-            accessToken:    data['auth_token'],
-            client:         data['client_id'],
-            expiry:         data['expiry'],
+            accessToken:    pdata['session_token'],
+            expiry:         pdata['expiry'],
             tokenType:      'Bearer',
-            uid:            data['uid']
+            uid:            pdata['id'],
+            session_token:  pdata['session_token']
         };
 
         this.setAuthData(authData);
@@ -467,10 +469,10 @@ export class Angular2TokenService implements CanActivate {
 
         let authData: AuthData = {
             accessToken:    localStorage.getItem('accessToken'),
-            client:         localStorage.getItem('client'),
             expiry:         localStorage.getItem('expiry'),
             tokenType:      localStorage.getItem('tokenType'),
-            uid:            localStorage.getItem('uid')
+            uid:            localStorage.getItem('uid'),
+            session_token:  localStorage.getItem('session_token')
         };
 
         if (this.checkAuthData(authData))
@@ -483,10 +485,10 @@ export class Angular2TokenService implements CanActivate {
             this.activatedRoute.queryParams.subscribe(queryParams => {
                 let authData: AuthData = {
                     accessToken:    queryParams['token'] || queryParams['auth_token'],
-                    client:         queryParams['client_id'],
                     expiry:         queryParams['expiry'],
                     tokenType:      'Bearer',
-                    uid:            queryParams['uid']
+                    uid:            queryParams['uid'],
+                    session_token:   queryParams['session_token']
                 };
 
                 if (this.checkAuthData(authData))
@@ -508,10 +510,11 @@ export class Angular2TokenService implements CanActivate {
             this.atCurrentAuthData = authData;
 
             localStorage.setItem('accessToken', authData.accessToken);
-            localStorage.setItem('client', authData.client);
             localStorage.setItem('expiry', authData.expiry);
             localStorage.setItem('tokenType', authData.tokenType);
             localStorage.setItem('uid', authData.uid);
+            localStorage.setItem('session_token', authData.session_token);
+
 
             if (this.atCurrentUserType != null)
                 localStorage.setItem('userType', this.atCurrentUserType.name);
@@ -530,10 +533,10 @@ export class Angular2TokenService implements CanActivate {
 
         if (
             authData.accessToken != null &&
-            authData.client != null &&
             authData.expiry != null &&
             authData.tokenType != null &&
-            authData.uid != null
+            authData.uid != null &&
+            authData.session_token != null
         ) {
             if (this.atCurrentAuthData != null)
                 return authData.expiry >= this.atCurrentAuthData.expiry;

@@ -45,6 +45,24 @@ export const SIGN_IN_FORM: BaseField[] = [
 
 export const SIGN_UP_FORM: BaseField[] = [
     new BaseField({
+        key: 'first_name',
+        label: 'First Name',
+        type: 'text',
+        validators: [
+            Validators.required,
+            Validators.minLength(2)
+        ]
+    }),
+    new BaseField({
+        key: 'last_name',
+        label: 'Last Name',
+        type: 'text',
+        validators: [
+            Validators.required,
+            Validators.minLength(2)
+        ]
+    }),
+    new BaseField({
         key: 'email',
         label: 'Email',
         type: 'text',
@@ -71,6 +89,7 @@ export const SIGN_UP_FORM: BaseField[] = [
             Validators.minLength(8)
         ]
     })
+
 ];
 
 export const RESET_PASSWORD_FORM: BaseField[] = [

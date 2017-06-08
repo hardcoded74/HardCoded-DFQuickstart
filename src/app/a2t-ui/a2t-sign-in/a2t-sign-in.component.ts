@@ -37,7 +37,7 @@ export class A2tSignInComponent {
     private _handleSuccess(data: any) {
         this._errors = null;
         this._formService.unlockSubmit();
-        this._router.navigate(['restricted']);
+        this._router.navigate(['dashboard']);
     }
 
     private _handleError(error: any) {

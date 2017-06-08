@@ -35,10 +35,10 @@ export interface ResetPasswordData {
 
 export interface AuthData {
     accessToken:    string;
-    client:         string;
     expiry:         string;
     tokenType:      string;
     uid:            string;
+    session_token:  string;
 }
 
 export interface UserData {

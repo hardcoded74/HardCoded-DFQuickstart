@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { Angular2TokenService } from '../angular2-token.service';
 
 import {
-    a2tRoutes,
     A2tUiComponent,
     A2tSharedModule,
 } from './';
@@ -19,7 +18,6 @@ import { A2tUpdatePasswordComponent } from './a2t-update-password/a2t-update-pas
         CommonModule,
         RouterModule,
         A2tSharedModule,
-        a2tRoutes
     ],
     declarations: [
         A2tUiComponent,

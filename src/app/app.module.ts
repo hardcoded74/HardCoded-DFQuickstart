@@ -19,6 +19,7 @@ import { A2tSignInComponent } from './a2t-ui/a2t-sign-in/a2t-sign-in.component';
 import { A2tResetPasswordComponent } from './a2t-ui/a2t-reset-password/a2t-reset-password.component';
 import { A2tSignUpComponent } from './a2t-ui/a2t-sign-up/a2t-sign-up.component';
 import { A2tUpdatePasswordComponent } from './a2t-ui/a2t-update-password/a2t-update-password.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 //Routing
@@ -36,7 +37,12 @@ const appRoutes: Routes = [{
                 canActivate: [Angular2TokenService]
             }
         ]
-}];
+},
+
+
+        {path: 'dashboard', component: DashboardComponent, canActivate:[Angular2TokenService]}
+
+];
 
 
 
@@ -48,7 +54,8 @@ const appRoutes: Routes = [{
     A2tResetPasswordComponent,
     A2tSignUpComponent,
     A2tUpdatePasswordComponent,
-    A2tUiComponent
+    A2tUiComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -28,7 +28,7 @@ import {
     AuthData,
 
     Angular2TokenOptions
-} from './angular2-token.model';
+} from '../models/angular2-token.model';
 
 @Injectable()
 export class Angular2TokenService implements CanActivate {
@@ -189,8 +189,8 @@ export class Angular2TokenService implements CanActivate {
         let observ = this.post(this.getUserPath() + this.atOptions.signInPath, body);
 
         observ.subscribe(res => this.atCurrentUserData = res.json().data, _error => null);
-
         return observ;
+
     }
 
     signInOAuth(oAuthType: string) {
@@ -408,6 +408,7 @@ export class Angular2TokenService implements CanActivate {
             this.getAuthHeadersFromResponse(<any>res);
         }, error => {
             this.getAuthHeadersFromResponse(<any>error);
+
         });
     }
 
@@ -436,22 +437,24 @@ export class Angular2TokenService implements CanActivate {
 
     // Parse Auth data from response
     private getAuthHeadersFromResponse(data: any): void {
-        let headers = data.headers;
+        let pdata = JSON.parse(data._body);
 
         let authData: AuthData = {
-            accessToken:    headers.get('session_token'),
-            expiry:         headers.get('expiry'),
-            tokenType:      headers.get('token-type'),
-            uid:            headers.get('uid'),
-            session_token:  headers.get('session_token')
+            accessToken:    pdata['session_token'],
+            expiry:         pdata['expiry'],
+            tokenType:      'Bearer',
+            uid:            pdata['id'],
+            session_token:  pdata['session_token']
         };
 
         this.setAuthData(authData);
+
     }
 
 
     // Parse Auth data from post message
     private getAuthDataFromPostMessage(data: any): void {
+
         let pdata = JSON.parse(data._body);
         let authData: AuthData = {
             accessToken:    pdata['session_token'],

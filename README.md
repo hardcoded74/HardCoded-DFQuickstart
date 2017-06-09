@@ -4,8 +4,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 The first part of this project is intended to provide a quick method of authentication with Dreamfactory. This project would not have been possible without the angular2-token project created by Jan-Philipp (Neroniaky)
 Visit the repository of angular2-token for some additional configuration options. 
-[angular2-token](https://github.com/neroniaky/angular2-token)
+[angular2-token](https://github.com/neroniaky/angular2-token) 
 
+Currently this will authenticate existing users and allow for new account creation.
+
+##Dreamfactory Configuration
+
+In order for this to work with your Dreamfactory App you will first need to change the DREAMFACTORY_API_KEY and DREAMFACTORY_INSTANCE_URL located in src/app/constants/constants.ts file. 
 
 
 ## Development server
@@ -32,4 +37,5 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
 # Hardcoded-DFQuickstart

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Angular2TokenService } from '../angular2-token.service';
+import { Angular2TokenService } from '../services/angular2-token.service';
 
 import {
     A2tUiComponent,

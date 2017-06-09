@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Angular2TokenService } from '../angular2-token.service';
+import { Angular2TokenService } from '../services/angular2-token.service';
 
 @Component({
     selector:   'a2t-ui',
@@ -21,7 +21,7 @@ import { Angular2TokenService } from '../angular2-token.service';
             display: flex;
             justify-content: center;
 
-            background-color: #3270a0;
+            background-color: #F8F9F9;
         }
 
         .a2t-logo {

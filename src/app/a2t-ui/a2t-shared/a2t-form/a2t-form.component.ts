@@ -48,7 +48,7 @@ import { A2tFormFieldComponent } from './a2t-form-field/a2t-form-field.component
             line-height: 30px;
 
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-            color: white;
+            color: #494949;
             border-bottom: 3px solid transparent;
         }
 

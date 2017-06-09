@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Angular2TokenService } from '../../angular2-token.service';
+import { Angular2TokenService } from '../../services/angular2-token.service';
 
-import { RegisterData } from '../../angular2-token.model';
+import { RegisterData } from '../../models/angular2-token.model';
 import { A2tFormService } from '../a2t-shared';
 import { SIGN_UP_FORM } from '../';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
     selector:       'a2t-sign-up',
@@ -23,21 +24,31 @@ export class A2tSignUpComponent {
     constructor(
         public _formService: A2tFormService,
         public _sessionService: Angular2TokenService,
-        public _router: Router
+        public _router: Router,
+        private flashMessage: FlashMessagesService,
     ) {
         this._formService.initForm(SIGN_UP_FORM);
         this._formService.submit$.subscribe(
             (data: RegisterData) => this._sessionService.registerAccount(data).subscribe(
                 res =>      this._handleSuccess(res),
-                error =>    this._handleError(error)
-            )
-        );
+
+                (error: any) => {
+                    this.flashMessage.show(error.json().error.message, {
+                        cssClass: 'alert-danger container',
+                        timeout: 2000
+                    });
+                    this.flashMessage.grayOut(true);
+                    this._handleError(error)
+                }
+            ));
     }
+
 
     private _handleSuccess(data: any) {
         this._errors = null;
         this._formService.unlockSubmit();
-        this._router.navigate(['restricted']);
+        this.flashMessage.show("Using the credentials you just provided, please log in for the first time.", { cssClass: 'alert-success container', timeout: 2000 });
+        this._router.navigate(['dashboard']);
     }
 
     private _handleError(error: any) {

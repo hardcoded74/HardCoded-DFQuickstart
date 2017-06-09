@@ -19,7 +19,7 @@ import { Component, Input } from '@angular/core';
         }
 
         a {
-            color: #eee !important;
+            color: #494949 !important;
             transition: .3s;
             text-decoration: none;
             font-size: 15px;
@@ -28,7 +28,7 @@ import { Component, Input } from '@angular/core';
         }
 
         a:hover {
-            color: white;
+            color: #34495E;
         }
     `]
 })

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Angular2TokenService } from './angular2-token.service';
+import { Angular2TokenService } from './services/angular2-token.service';
 import * as constants from './constants/constants';
 
 

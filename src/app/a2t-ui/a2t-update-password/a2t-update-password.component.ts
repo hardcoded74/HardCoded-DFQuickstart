@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Angular2TokenService } from '../../angular2-token.service';
+import { Angular2TokenService } from '../../services/angular2-token.service';
 
-import { UpdatePasswordData } from '../../angular2-token.model';
+import { UpdatePasswordData } from '../../models/angular2-token.model';
 import { A2tFormService } from '../a2t-shared';
 import { UPDATE_PASSWORD_FORM } from '../';
 

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
     styles:  [`
         p {
             text-align: center;
-            color: white;
+            color: #34495E;
             font-size: 30px;
         }
     `]

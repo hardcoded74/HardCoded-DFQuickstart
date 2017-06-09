@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Angular2TokenService } from '../../angular2-token.service';
+import { Angular2TokenService } from '../../services/angular2-token.service';
 
-import { ResetPasswordData } from '../../angular2-token.model';
+import { ResetPasswordData } from '../../models/angular2-token.model';
 import { A2tFormService } from '../a2t-shared';
 import { RESET_PASSWORD_FORM } from '../';
 

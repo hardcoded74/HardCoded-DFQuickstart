@@ -8,7 +8,7 @@ Visit the repository of angular2-token for some additional configuration options
 
 Currently this will authenticate existing users and allow for new account creation.
 
-##Dreamfactory Configuration
+## Dreamfactory Configuration
 
 In order for this to work with your Dreamfactory App you will first need to change the DREAMFACTORY_API_KEY and DREAMFACTORY_INSTANCE_URL located in src/app/constants/constants.ts file. 
 

@@ -27,6 +27,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 
+
 //Routing
 
 const appRoutes: Routes = [{
@@ -44,8 +45,8 @@ const appRoutes: Routes = [{
         ]
 },
 
-
-        {path: 'dashboard', component: DashboardComponent, canActivate:[Angular2TokenService]}
+    {path: '', component: DashboardComponent, canActivate:[Angular2TokenService]},
+    {path: 'dashboard', component: DashboardComponent, canActivate:[Angular2TokenService]}
 
 ];
 

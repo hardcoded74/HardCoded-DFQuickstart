@@ -10,7 +10,7 @@ Currently this will authenticate existing users and allow for new account creati
 
 ## Dreamfactory Configuration
 
-In order for this to work with your Dreamfactory App you will first need to change the DREAMFACTORY_API_KEY and DREAMFACTORY_INSTANCE_URL located in src/app/constants/constants.ts file. You will also need to make sure you add expiry to be returned with your authentication response.  
+In order for this to work with your Dreamfactory App you will first need to change the DREAMFACTORY_API_KEY and DREAMFACTORY_INSTANCE_URL located in src/app/constants/constants.ts file. You will also need to make sure you add expiry to be returned with your authentication response. I will provide a walk-thro on this change soon.  
 
 
 ## Development server

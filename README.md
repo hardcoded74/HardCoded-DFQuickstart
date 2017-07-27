@@ -10,7 +10,14 @@ Currently this will authenticate existing users and allow for new account creati
 
 ## Dreamfactory Configuration
 
-In order for this to work with your Dreamfactory App you will first need to change the DREAMFACTORY_API_KEY and DREAMFACTORY_INSTANCE_URL located in src/app/constants/constants.ts file. You will also need to make sure you add expiry to be returned with your authentication response. I will provide a walk-thru on this change soon.  
+In order for this to work with your Dreamfactory App you will first need to change the DREAMFACTORY_API_KEY and DREAMFACTORY_INSTANCE_URL located in src/app/constants/constants.ts file. 
+
+You will also need to make sure you add expiry to be returned with your authentication response. To do this you must log into your Dreamfactory api and go to scripts. Once in scripts you
+need to navigate to => user => user.session => (post) => user.session.post.post_process. If you have done this correctly under the heading "Script Name"it will read 
+"user.session.post.post_process". Below that you will change "Script Type/Language" to PHP and click "select file" from Github. Use the following URL
+you must need to checkbox "Active" along with "Allow script to modify response payload"
+
+Then just save! 
 
 
 ## Development server

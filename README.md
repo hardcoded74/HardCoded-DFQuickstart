@@ -14,8 +14,9 @@ In order for this to work with your Dreamfactory App you will first need to chan
 
 You will also need to make sure you add expiry to be returned with your authentication response. To do this you must log into your Dreamfactory api and go to scripts. Once in scripts you
 need to navigate to => user => user.session => (post) => user.session.post.post_process. If you have done this correctly under the heading "Script Name"it will read 
-"user.session.post.post_process". Below that you will change "Script Type/Language" to PHP and click "select file" from Github. Use the following URL https://github.com/hardcoded74/HardCoded-DFQuickstart/blob/master/df-settings.php
-you must need to checkbox "Active" along with "Allow script to modify response payload"
+"user.session.post.post_process". Below that you will change "Script Type/Language" to PHP and upload the df-settings.php file located in the root of this repository. If you wish to use
+ the github url to add the script it is https://github.com/hardcoded74/HardCoded-DFQuickstart/blob/master/df-settings.php
+You must check "Active" along with "Allow script to modify response payload" for this to work. 
 
 Then just save! 
 
